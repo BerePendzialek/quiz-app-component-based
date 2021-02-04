@@ -1,13 +1,19 @@
+import createElement from '../lib/createElement'
 import './Header.css'
 
-export default function Header() {
-  const el = document.createElement('header')
-  el.className = 'Header'
-  el.innerHTML = `
-    <h1 class="Header__title">
-    Quiz App
-    <span class="Header__subtitle">May the best win!</span>
-  </h1>
-    `
+export default function Header(title, subtitle) {
+  const el = createElement('header', {
+    className: 'Header',
+  })
+  const headerTitle = createElement('h1', {
+    className: 'Header__title',
+    innerText: title,
+  })
+  const headerSubtitle = createElement('span', {
+    className: 'Header__subtitle',
+    innerText: subtitle,
+  })
+
+  el.append(headerTitle, headerSubtitle)
   return el
 }
