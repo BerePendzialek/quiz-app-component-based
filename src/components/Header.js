@@ -1,4 +1,4 @@
-import './header-com.css'
+import './Header.css'
 
 export default function Header() {
   const el = document.createElement('header')
