@@ -1,8 +1,8 @@
 import createElement from '../../lib/createElement'
 import './CreateForm.css'
 
-export default function CreateForm() {
-  const el = createElement('form', {
+export default function CreateForm(onSubmit) {
+  const form = createElement('form', {
     className: 'CreateForm',
     innerHTML: `
     <label>
@@ -11,14 +11,20 @@ export default function CreateForm() {
     </label>
     <label>
     Answer:
-<input name="question" placeholder="What is...?">
+<input name="answer" placeholder="What is...?">
     </label>
-    <label>
-    Tags:
-<input name="question" placeholder="Tags separated by comma?">
-    </label>
+  
     <button>Create question</button>
     `,
   })
-  return el
+
+  form.addEventListener('submit', event => {
+    event.preventDefault()
+    const { question: questionInput, answer: answerInput } = form.elemements
+    const question = questionInput.value
+    const answer = answerInput.value
+
+    onSubmit(question, answer)
+  })
+  return form
 }
