@@ -4,20 +4,13 @@ import CreateForm from './components/CreateForm'
 import createElement from './lib/createElement'
 import Navigation from './components/Navigation'
 
-const { el: headerEl } = Header('Quiz App', 'May the best win')
+const cards = []
+
+const { el: headerEl } = Header('Quiz App')
 
 const navigation = Navigation(onNavigate)
 
-const homePage = createElement(
-  'main',
-  { className: 'HomePage', hidden: false },
-  Card(
-    'What does the array method .filter do?',
-    'Returns an array with all matching elements'
-  ),
-  Card('Why?', 'Because'),
-  Card('Which way?', 'That way')
-)
+const homePage = createElement('main', { className: 'HomePage', hidden: false })
 
 const form = CreateForm(onSubmit)
 
@@ -27,7 +20,7 @@ const createPage = createElement(
     className: 'CreatePage',
     hidden: true,
   },
-  form()
+  form
 )
 
 const grid = createElement(
@@ -39,6 +32,21 @@ const grid = createElement(
   navigation
 )
 
+document.body.append(grid)
+
+function onSubmit(question, answer) {
+  cards.push({ question, answer })
+  renderCards()
+}
+
+function renderCards() {
+  const cardElements = cards.map(({ question, answer }) =>
+    Card(question, answer)
+  )
+  homePage.innerHTML = ''
+  homePage.append(...cardElements)
+}
+
 function onNavigate(text) {
   if (text === 'Home') {
     homePage.hidden = false
@@ -49,5 +57,3 @@ function onNavigate(text) {
     createPage.hidden = false
   }
 }
-
-document.body.append(grid)

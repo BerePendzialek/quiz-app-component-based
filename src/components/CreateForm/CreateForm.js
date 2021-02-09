@@ -20,7 +20,7 @@ export default function CreateForm(onSubmit) {
 
   form.addEventListener('submit', event => {
     event.preventDefault()
-    const { question: questionInput, answer: answerInput } = form.elemements
+    const { question: questionInput, answer: answerInput } = form.elements
     const question = questionInput.value
     const answer = answerInput.value
 
