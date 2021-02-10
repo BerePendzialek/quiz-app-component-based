@@ -1,16 +1,16 @@
-import Card from './components/Card'
 import Header from './components/Header'
 import CreateForm from './components/CreateForm'
 import createElement from './lib/createElement'
 import Navigation from './components/Navigation'
+import HomePage from './components/HomePage'
 
 const cards = []
 
 const header = Header('Quiz App')
 
-const navigation = Navigation(onNavigate)
+const homePage = HomePage()
 
-const homePage = createElement('main', { className: 'HomePage', hidden: false })
+const navigation = Navigation(onNavigate)
 
 const form = CreateForm(onSubmit)
 
@@ -36,26 +36,18 @@ document.body.append(grid)
 
 function onSubmit(question, answer) {
   cards.push({ question, answer })
-  renderCards()
-}
-
-function renderCards() {
-  const cardElements = cards.map(({ question, answer }) =>
-    Card(question, answer)
-  )
-  homePage.innerHTML = ''
-  homePage.append(...cardElements)
+  homePage.setCards(cards)
 }
 
 function onNavigate(text) {
   if (text === 'Home') {
-    homePage.hidden = false
-    createPage.hidden = true
+    homePage.show()
+    createPage.hide()
     header.setText('Homepage')
   }
   if (text === 'Create') {
-    homePage.hidden = true
-    createPage.hidden = false
+    homePage.hide()
+    createPage.show()
     header.setText('Create cards')
   }
 }
