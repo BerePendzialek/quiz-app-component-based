@@ -1,7 +1,8 @@
 import CreatePage from './CreatePage'
+import { action } from '@storybook/addon-actions'
 
 export default {
-  title: 'CreatePage',
+  title: 'Pages/CreatePage',
   component: CreatePage,
 }
 
