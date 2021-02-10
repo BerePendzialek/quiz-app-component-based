@@ -15,7 +15,13 @@ const buttonsConfig = [
 
 export default function Navigation(onNavigate) {
   const buttons = buttonsConfig.map(({ svgPath, text }) => {
-    const button = createElement('img', { src: svgPath, alt: text })
+    const button = createElement(
+      'button',
+      { className: 'Navigation__button' },
+      createElement('img', { src: svgPath, alt: '' }),
+      text
+    )
+
     button.addEventListener('click', () => onNavigate(text))
     return button
   })

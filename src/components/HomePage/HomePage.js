@@ -15,14 +15,13 @@ export default function HomePage(cards) {
     el.append(...cardElements)
   }
 
-function show() }
-el.hidden = false
-{
+  function show() {
+    el.hidden = false
+  }
 
-function hide() }
+  function hide() {
     el.hidden = true
-    {   
-
+  }
 
   return {
     el,
